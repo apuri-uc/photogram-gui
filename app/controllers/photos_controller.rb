@@ -50,22 +50,4 @@ class PhotosController < ApplicationController
     
     redirect_to("/photos/" + the_photo.id.to_s)
   end
-
-  def comment
-    the_id = params.fetch("update_id")
-    matching_comments = Comment.where({ :id => the_id })
-    the_comment = matching_comments.at(0)
-
-    input_photo_id = params.fetch("query_photo_id")
-    input_author_id = params.fetch("query_author_id")
-    input_comment = params.fetch("query_comment")
-
-    the_comment.photo_id = input_photo_id
-    the_comment.author_id = input_author_id
-    the_comment.comment = input_comment
-
-    the_comment.save
-    
-    redirect_to("/photos/" + the_photo.id.to_s)
-  end
 end
